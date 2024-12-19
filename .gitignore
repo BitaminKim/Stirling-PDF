@@ -4,6 +4,7 @@ bin/
 tmp/
 *.tmp
 *.bak
+*.exe
 *.swp
 *~.nib
 local.properties
@@ -160,3 +161,4 @@ out/
 .pytest_cache
 .ipynb_checkpoints
 
+**/jcef-bundle/

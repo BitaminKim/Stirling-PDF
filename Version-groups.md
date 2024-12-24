@@ -1,14 +1,14 @@
-|All versions in a Docker environment can download Calibre as a optional extra at runtime to support `book-to-pdf` and `pdf-to-book` using parameter ``INSTALL_BOOK_AND_ADVANCED_HTML_OPS``.
-The 'Fat' container contains all those found in 'Full' with security jar along with this Calibre install. 
+All versions in a Docker environment can download Calibre as a optional extra at runtime to support `book-to-pdf` and `pdf-to-book` using parameter ``INSTALL_BOOK_AND_ADVANCED_HTML_OPS``.
+The 'Fat' container contains all those found in 'Full' with security jar along with this Calibre install.
 
-Technology | Ultra-Lite | Full  |
+| Technology | Ultra-Lite | Full  |
 | ---------- | :--------: | :---: |
-| Java       |     ✔️      |   ✔️   |
-| JavaScript |     ✔️      |   ✔️   |
+| Java       | ✔️          |   ✔️   |
+| JavaScript | ✔️          |   ✔️   |
 | Libre      |            |   ✔️   |
 | Python     |            |   ✔️   |
 | OpenCV     |            |   ✔️   |
-| OCRmyPDF   |            |   ✔️   |
+| qpdf       |            |   ✔️   |
 
 | Operation              | Ultra-Lite | Full |
 | ---------------------- | ---------- | ---- |
@@ -54,3 +54,15 @@ Technology | Ultra-Lite | Full  |
 | ocr-pdf                |            | ✔️    |
 | pdf-to-pdfa            |            | ✔️    |
 | remove-blanks          |            | ✔️    |
+| pdf-to-text            | ✔️          | ✔️    |
+| pdf-to-html            |            | ✔️    |
+| pdf-to-word            |            | ✔️    |
+| pdf-to-presentation    |            | ✔️    |
+| pdf-to-xml             |            | ✔️    |
+| remove-annotations     | ✔️          | ✔️    |
+| remove-cert-sign       | ✔️          | ✔️    |
+| remove-image-pdf       | ✔️          | ✔️    |
+| file-to-pdf            |            | ✔️    |
+| html-to-pdf            |            | ✔️    |
+| url-to-pdf             |            | ✔️    |
+| repair                 |            | ✔️    |

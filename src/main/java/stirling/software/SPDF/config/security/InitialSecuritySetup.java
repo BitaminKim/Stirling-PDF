@@ -3,7 +3,6 @@ package stirling.software.SPDF.config.security;
 import java.io.IOException;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
@@ -16,11 +15,20 @@ import stirling.software.SPDF.model.Role;
 @Slf4j
 public class InitialSecuritySetup {
 
-    @Autowired private UserService userService;
+    private final UserService userService;
 
-    @Autowired private ApplicationProperties applicationProperties;
+    private final ApplicationProperties applicationProperties;
 
-    @Autowired private DatabaseBackupInterface databaseBackupHelper;
+    private final DatabaseBackupInterface databaseBackupHelper;
+
+    public InitialSecuritySetup(
+            UserService userService,
+            ApplicationProperties applicationProperties,
+            DatabaseBackupInterface databaseBackupHelper) {
+        this.userService = userService;
+        this.applicationProperties = applicationProperties;
+        this.databaseBackupHelper = databaseBackupHelper;
+    }
 
     @PostConstruct
     public void init() throws IllegalArgumentException, IOException {
@@ -30,6 +38,7 @@ public class InitialSecuritySetup {
             initializeAdminUser();
         } else {
             databaseBackupHelper.exportDatabase();
+            userService.migrateOauth2ToSSO();
         }
         initializeInternalApiUser();
     }
@@ -74,5 +83,6 @@ public class InitialSecuritySetup {
             userService.addApiKeyToUser(Role.INTERNAL_API_USER.getRoleId());
             log.info("Internal API user created: " + Role.INTERNAL_API_USER.getRoleId());
         }
+        userService.syncCustomApiUser(applicationProperties.getSecurity().getCustomGlobalAPIKey());
     }
 }
